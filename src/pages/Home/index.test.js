@@ -29,16 +29,30 @@ describe("When Form is created", () => {
 
 
 describe("When a page is created", () => {
-  it("a list of events is displayed", () => {
-    // to implement
-  })
-  it("a list a people is displayed", () => {
-    // to implement
-  })
-  it("a footer is displayed", () => {
-    // to implement
-  })
-  it("an event card, with the last event, is displayed", () => {
-    // to implement
-  })
+it("a list of events is displayed", () => {
+  render(<Home />);
+
+  const titles = screen.getAllByText("Nos réalisations");
+  expect(titles.length).toBe(2);
+});
+
+  it("a list of people is displayed", async () => {
+    render(<Home />);
+
+    expect(await screen.findByText("Samira")).toBeInTheDocument();
+    expect(await screen.findByText("Jean-baptiste")).toBeInTheDocument();
+  });
+
+  it("a footer is displayed", async () => {
+    render(<Home />);
+
+    expect(await screen.findByText("Contactez-nous")).toBeInTheDocument();
+    expect(await screen.findByText("01 23 45 67 89")).toBeInTheDocument();
+  });
+
+  it("an event card with the last event is displayed", async () => {
+    render(<Home />);
+
+    expect(await screen.findByText("Notre derniére prestation")).toBeInTheDocument();
+  });
 });
