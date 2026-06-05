@@ -34,4 +34,11 @@ describe("When a button is created", () => {
       expect(buttonElement.type).toEqual("submit");
     });
   });
+  it("the button is disabled when disabled prop is true", () => {
+  render(<Button disabled>Envoyer</Button>);
+
+  const buttonElement = screen.getByTestId("button-test-id");
+
+  expect(buttonElement).toBeDisabled();
+});
 });
