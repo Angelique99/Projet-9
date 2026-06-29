@@ -19,11 +19,11 @@ const EventList = () => {
     (evtA, evtB) =>
       new Date(evtA.date) - new Date(evtB.date)
   );
-
+/// reparation du filtrage ///
 const filteredEvents = (
-  !type
-    ? sortedEvents
-    : sortedEvents.filter((event) => event.type === type)
+  type
+    ? sortedEvents.filter((event) => event.type === type)
+    : sortedEvents
 ).filter((event, index) => {
     if (
       (currentPage - 1) * PER_PAGE <= index &&

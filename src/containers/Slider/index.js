@@ -8,10 +8,8 @@ const Slider = () => {
   const { data } = useData();
   const [index, setIndex] = useState(0);
 
-const byDateDesc = data?.focus
-  ?.slice()
-  .sort((evtA, evtB) => 
-    new Date(evtA.date) - new Date(evtB.date)
+const byDateDesc = data?.focus?.slice().sort((evtA, evtB) => 
+  new Date(evtA.date) - new Date(evtB.date)
 );
 
   // changement automatique de slide //
@@ -23,7 +21,7 @@ const byDateDesc = data?.focus
     // timer toutes les 5 secondes //
     const timer = setTimeout(() => {
 
-      // évite dépassement du tableau //
+      // évite dépassement du tableau, sup donc l'image blanche//
       setIndex((prevIndex) =>
         prevIndex < byDateDesc.length - 1 ? prevIndex + 1: 0 );
     }, 5000);
@@ -59,16 +57,16 @@ const byDateDesc = data?.focus
 
     <div className="SlideCard__paginationContainer">
       <div className="SlideCard__pagination">
-
-        {byDateDesc?.map((event, radioIdx) => (
-          <input
-            key={event.id}
-            type="radio"
-            name="radio-button"
-            checked={index === radioIdx}
-            readOnly
-          />
-        ))}
+ 
+{byDateDesc?.map((event, radioIdx) => (
+  <input
+    key={`${event.id}-${radioIdx}`}
+    type="radio"
+    name="radio-button"
+    checked={index === radioIdx}
+    readOnly
+  />
+))}
 
       </div>
     </div>
